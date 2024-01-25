@@ -67,7 +67,7 @@ public:
 
     bool isMoveValid(int destX, int destY) const override {
         // ナイトはL字型に動ける
-        return (abs(x - destX) == 1 && abs(y - destY) == 2) || 
+        return (abs(x - destX) == 1 && abs(y - destY) == 2) ||
                (abs(x - destX) == 2 && abs(y - destY) == 1);
     }
 
@@ -93,7 +93,7 @@ public:
     bool isMoveValid(int destX, int destY) const override {
         // ポーンは前に1マス、または初めての動きで2マス動ける
         int direction = isWhite ? 1 : -1;
-        return (x == destX && y + direction == destY) || 
+        return (x == destX && y + direction == destY) ||
                (isFirstMove() && x == destX && y + 2 * direction == destY);
     }
 
@@ -163,6 +163,7 @@ public:
         }
 
         // 駒を移動
+        piece->setPosition(destX, destY);
         squares[destX][destY] = std::move(piece);
         piece = nullptr;
         return true;
